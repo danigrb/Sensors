@@ -24,11 +24,11 @@ abstract class AndroidSensor (  private val context: Context,
         if(!::sensorManager.isInitialized && sensor == null){
             sensorManager = context.getSystemService(SensorManager::class.java) as SensorManager
             sensor = sensorManager.getDefaultSensor(sensorType)
-        } else {
-            sensor?.let {
-                sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_NORMAL)
-            }
         }
+        sensor?.let {
+            sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_NORMAL)
+        }
+
     }
 
     override fun stopListening() {
@@ -39,6 +39,7 @@ abstract class AndroidSensor (  private val context: Context,
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
+
         if(!doesSensorExist){
             return
         }
