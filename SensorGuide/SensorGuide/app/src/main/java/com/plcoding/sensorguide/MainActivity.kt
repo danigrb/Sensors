@@ -32,6 +32,8 @@ class MainActivity : ComponentActivity() {
                 val x = viewModel.x
                 val y = viewModel.y
                 val z = viewModel.z
+                val lat = viewModel.lat
+                val lon = viewModel.lon
                 val proximity = viewModel.proximity
                 val acceleration = viewModel.acceleration
                 Box(
@@ -49,7 +51,9 @@ class MainActivity : ComponentActivity() {
                                 "\n Y:"+y+
                                 " \nZ:"+z+
                                 " \nAcceleration:"+acceleration+
-                                " \nProximity:"+proximity
+                                " \nProximity:"+proximity+
+                                "\n Lat:"+lat+
+                                " \nLon:"+lon
                         ,color = if(isDark) Color.White else Color.DarkGray
                     )
                 }

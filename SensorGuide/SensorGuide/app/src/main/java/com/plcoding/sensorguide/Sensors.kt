@@ -30,3 +30,10 @@ class AccelerometerSensor(context: Context) : AndroidSensor(
     sensorType = Sensor.TYPE_ACCELEROMETER_UNCALIBRATED){
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) = Unit
 }
+
+class GPSSensor(context: Context) : AndroidSensor(
+    context = context,
+    sensorFeature = PackageManager.FEATURE_LOCATION_GPS,
+    sensorType = Sensor.TYPE_ALL){
+    override fun onAccuracyChanged(p0: Sensor?, p1: Int) = Unit
+}

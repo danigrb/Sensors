@@ -19,7 +19,8 @@ object SensorModule{
                 LightSensor(app.applicationContext),
                 GyroscopeSensor(app.applicationContext),
                 ProximitySensor(app.applicationContext),
-                AccelerometerSensor(app.applicationContext)
+                AccelerometerSensor(app.applicationContext),
+                GPSSensor(app.applicationContext)
             ) )
     }
 }

@@ -12,15 +12,12 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val sensorsCollection: ISensorCollection
 ) : ViewModel() {
-    private lateinit var mqttClient: MqttAndroidClient
-    // TAG
-    companion object {
-        const val TAG = "AndroidMqttClient"
-    }
     private val lightSensor = sensorsCollection.sensors[0]
     private val gyroscopeSensor = sensorsCollection.sensors[1]
     private val proximitySensor = sensorsCollection.sensors[2]
     private val accelerometerSensor = sensorsCollection.sensors[3]
+    private val gpsSensor = sensorsCollection.sensors[4]
+
     var isDark by mutableStateOf(false)
     var isVeryDark by mutableStateOf(false)
     var lux by mutableStateOf(0f)
@@ -29,6 +26,8 @@ class MainViewModel @Inject constructor(
     var z by mutableStateOf(0f)
     var proximity by mutableStateOf(0f)
     var acceleration by mutableStateOf(0f)
+    var lat by mutableStateOf(0f)
+    var lon by mutableStateOf(0f)
 
     init{
         lightSensor.startListening()
@@ -36,6 +35,7 @@ class MainViewModel @Inject constructor(
 
         proximitySensor.startListening()
         accelerometerSensor.startListening()
+        gpsSensor.startListening()
 
         lightSensor.setOnSensorValuesChangedListener {
             values ->
@@ -54,6 +54,12 @@ class MainViewModel @Inject constructor(
 
         }
 
+        gpsSensor.setOnSensorValuesChangedListener {
+                values ->
+            lat = values[0]
+            lon = values[1]
+
+        }
 
         proximitySensor.setOnSensorValuesChangedListener {
                 values ->
